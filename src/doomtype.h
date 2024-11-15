@@ -23,6 +23,7 @@
 
 #include <stddef.h> // size_t, NULL
 #include <stdint.h> // [FG] intptr_t types
+#include <stdbool.h>
 
 #include "config.h"
 
@@ -88,6 +89,18 @@ typedef byte lighttable_t;
 
 #if defined(_MSC_VER) && !defined(__cplusplus)
 #define inline __inline
+#endif
+
+#if defined(__clang__)
+ #ifndef __has_feature
+  #define __has_feature(x) 0
+ #endif
+ #ifndef __has_extension
+  #define __has_extension __has_feature
+ #endif
+ #ifndef __has_attribute
+  #define __has_attribute __has_feature
+ #endif
 #endif
 
 #if defined(__GNUC__) || defined(__clang__)
